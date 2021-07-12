@@ -15,6 +15,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "BASE_URL", "\"https://api.unsplash.com/photos/\""
+        buildConfigField "String", "ACCESS_KEY", "\"YlwyfB1p8IpWk-N18ASJVNZ8i8sQiWbJprZSjP9gIWs\""
+        buildConfigField "String", "SECRET_KEY", "\"E004qQaGxXkgdNsJHdq98AvlW_bk1CmWA9g9b3gVYJA\""
     }
 
     buildTypes {
@@ -42,4 +46,15 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.21'
+    runtimeOnly group: 'io.reactivex.rxjava2', name: 'rxkotlin', version: '2.4.0'
+    implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: '2.1.1'
+
+    implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.9.0'
+    implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.9.0'
+    implementation group: 'com.squareup.retrofit2', name: 'adapter-rxjava2', version: '2.9.0'
+
+    implementation group: 'com.github.bumptech.glide', name: 'glide', version: '4.12.0'
+    implementation group: 'jp.wasabeef', name: 'glide-transformations', version: '4.3.0'
 }
