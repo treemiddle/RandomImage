@@ -51,6 +51,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
     implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.21'
     runtimeOnly group: 'io.reactivex.rxjava2', name: 'rxkotlin', version: '2.4.0'
     implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: '2.1.1'

@@ -37,9 +37,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+
         bindRx()
         initEditListener()
         initAdapter()
+        loadingShimmer(true)
         refresh()
     }
 
@@ -67,8 +69,8 @@ class MainActivity : AppCompatActivity() {
         addDisposable(
             networkApi.api.getPhotos(query)
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { showLoading() }
-                .doAfterTerminate { hideLoading() }
+                .doOnSubscribe { loadingProgressbar(true) }
+                .doAfterTerminate { loadingProgressbar(false) }
                 .doOnError(::log)
                 .subscribe(::setItem)
         )
@@ -76,6 +78,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setItem(images: List<ImageResponse>) {
         mainAdapter.addItems(images)
+        loadingRecyclerView(true)
+        loadingShimmer(false)
         hideRefreshLoading()
     }
 
@@ -89,17 +93,36 @@ class MainActivity : AppCompatActivity() {
         binding.swipeRefresh.isRefreshing = false
     }
 
-    private fun showLoading() {
-        binding.progressBar.visibility = View.VISIBLE
+    private fun loadingProgressbar(result: Boolean) {
+        binding.progressBar.visibility = if (result) {
+            View.VISIBLE
+        } else {
+            View.INVISIBLE
+        }
     }
 
-    private fun hideLoading() {
-        binding.progressBar.visibility = View.INVISIBLE
+    private fun loadingRecyclerView(result: Boolean) {
+        binding.recyclerView.visibility = if (result) {
+            View.VISIBLE
+        } else {
+            View.INVISIBLE
+        }
+    }
+
+    private fun loadingShimmer(result: Boolean) {
+        binding.shimmerLayout.visibility = if (result) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
     }
 
     private fun log(t: Throwable) {
-        if (BuildConfig.DEBUG)
+        if (BuildConfig.DEBUG) {
             Log.d(javaClass.simpleName, t.localizedMessage ?: "error")
+            loadingRecyclerView(false)
+            loadingShimmer(false)
+        }
     }
 
     private fun addDisposable(disposable: Disposable) {
