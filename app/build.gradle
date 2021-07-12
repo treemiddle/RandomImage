@@ -16,7 +16,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "BASE_URL", "\"https://api.unsplash.com/photos/\""
+        buildConfigField "String", "BASE_URL", "\"https://api.unsplash.com/\""
         buildConfigField "String", "ACCESS_KEY", "\"YlwyfB1p8IpWk-N18ASJVNZ8i8sQiWbJprZSjP9gIWs\""
         buildConfigField "String", "SECRET_KEY", "\"E004qQaGxXkgdNsJHdq98AvlW_bk1CmWA9g9b3gVYJA\""
     }
@@ -54,6 +54,7 @@ dependencies {
     implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.9.0'
     implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.9.0'
     implementation group: 'com.squareup.retrofit2', name: 'adapter-rxjava2', version: '2.9.0'
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.9.1'
     implementation group: 'com.squareup.okhttp3', name: 'logging-interceptor', version: '4.9.1'
 
     implementation group: 'com.github.bumptech.glide', name: 'glide', version: '4.12.0'
