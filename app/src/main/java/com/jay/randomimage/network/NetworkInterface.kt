@@ -9,6 +9,7 @@ interface NetworkInterface {
 
     @GET("photos/random")
     fun getPhotos(
-        @Query("query") query: String? = null
-    ): Single<ImageResponse>
+        @Query("query") query: String? = null,
+        @Query("count") count: Int = 30
+    ): Single<List<ImageResponse>>
 }
