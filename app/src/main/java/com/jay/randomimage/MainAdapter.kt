@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.jay.randomimage.databinding.ItemImageBinding
 import com.jay.randomimage.model.ImageResponse
 
@@ -34,6 +35,9 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
             Glide.with(binding.root)
                 .load(image.user?.profileImageUrls?.small)
+                .placeholder(R.drawable.profile_placeholder)
+                .circleCrop()
+                .transition(DrawableTransitionOptions.withCrossFade())
                 .into(binding.ivProfile)
 
             binding.tvName.text = image.user?.name ?: "이름없음"
@@ -50,6 +54,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     }
 
     fun addItems(images: List<ImageResponse>) {
+        this.imageList.clear()
         this.imageList.addAll(images)
         notifyDataSetChanged()
     }
